@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <style>
+
+      * {
+      box-sizing: border-box;
+      }
+
+      .column {
+      float: left;
+      width: 35%;
+      padding: 5px;
+      }
+
+      .row::after {
+      content: "";
+      clear: both;
+      display: table;
+      }
+      
+      #customers {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+      }
+
+      #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+      }
+
+      #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+      #customers tr:hover {background-color: #ddd;}
+
+      #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+      
+    </style>
+  </head>
+
+  <title>HTML - O início</title>
+
+   <body>
+
+      <img src="https://akamai.sscdn.co/uploadfile/letras/playlists/3/a/b/9/3ab92363f7974d679f4194de9f389b5b.jpg" width="200"/>
+
+      <h1>Uma trova...</h1>
+
+      <p>
+
+         Eu só preciso de hoje<br/>      
+
+         Pra viver e ser feliz<br/>
+
+         O passado já me foge<br/>
+
+         E o futuro nada diz!<br/>
+
+      </p>
+
+      <br/>
+
+      <p>
+
+         Autor: Francisco Borges
+
+      </p>
+
+      <div class="row">
+      <div class="column">
+      <table id="customers">
+      <tr>
+        <th>Bebidas</th>
+        <th>Preço</th>
+      </tr>
+      <tr>
+        <td>Cachaça</td>
+        <td>R$1,50</td>
+      </tr>
+      <tr>
+        <td>Vinho</td>
+        <td>R$50,00</td>
+      </tr>
+      </table>
+      </div>
+      <div class="column">
+      <table id="customers">
+        <tr>
+          <th>Bebidas</th>
+          <th>Preço</th>
+       </tr>
+        <tr>
+          <td>Cachaça</td>
+          <td>R$1,50</td>
+        </tr>
+        <tr>
+          <td>Vinho</td>
+          <td>R$50,00</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+     
+     <br/>
+     <a href="https://www.youtube.com/?gl=BR&hl=PT" target="_blank">YouTube</a>
+
+   </body>     
+
+</html>
