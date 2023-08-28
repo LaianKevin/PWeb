@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>   
+<head>
+    <meta charset="UTF-8">      
+    <style>
+        #meuAmor {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out; /* Adiciona uma transição suave */
+        }
+    </style>
+</head>
+<body>
+    <div id="meuAmor"></div>
+    <div>
+        <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>            
+    <script>
+        let isDivVisible = false;
+
+        function carregarDiv() {
+            let div = document.getElementById("meuAmor");
+
+            if (isDivVisible) {
+                div.style.opacity = 0; // Inicia o efeito de fade out
+                setTimeout(() => {
+                    div.innerHTML = ""; // Limpa o conteúdo da div após o fade out
+                    div.style.opacity = 1; // Retorna a opacidade ao normal
+                }, 500); // Aguarda 500ms (duração da transição) antes de limpar o conteúdo
+            } else {
+                div.style.opacity = 0; // Configura opacidade para iniciar o efeito de fade in
+                div.innerHTML = `<h1>Guinness</h1>`; // Adiciona conteúdo à div
+                setTimeout(() => {
+                    div.style.opacity = 1; // Finaliza o efeito de fade in
+                }, 0); // Aguarda um curto período antes de iniciar o fade in (opcional)
+            }
+
+            isDivVisible = !isDivVisible;
+        }
+
+        let botao = document.getElementById("botaoCarregar");
+        botao.addEventListener("click", carregarDiv);
+    </script>
+</body>
+</html>
