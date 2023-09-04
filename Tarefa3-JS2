@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Estilos para as marcas div que contêm os nomes das cervejas */
+        .cerveja {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 0 auto; /* Centraliza a tabela na página */
+        }
+
+        /* Estilos para as células da tabela */
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <th>
+            <div id="meuAmor">
+                <button id="botaoCarregar">Carregando cervejas...</button>
+            </div>
+        </th>
+      <button id="botaoOrdenar">Ordenar cervejas</button>
+      <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+    </table>
+
+    <script>
+        let cervejas = ["Guinness", "Desperados", "Becks"];
+
+        function transformar(item) {
+            return `<div class="cerveja">${item}</div>`;
+        }
+
+        function carregarDiv() {
+            let div = document.getElementById("meuAmor");
+            let cervejasHtml = cervejas.map(transformar);
+            div.innerHTML = `${cervejasHtml.join("\n")}`;
+        }
+
+        function ordenarCervejas() {
+            cervejas.sort(); // Ordena o array de cervejas em ordem alfabética
+            carregarDiv(); // Atualiza a exibição das cervejas
+        }
+        function embaralharCervejas() {
+            // Função de comparação aleatória para embaralhar o array
+            function comparaAleatoria() {
+                return Math.random() - 0.5;
+            }
+
+            cervejas.sort(comparaAleatoria); // Embaralha o array de cervejas
+            carregarDiv(); // Atualiza a exibição das cervejas
+        }
+
+        let botaoOrdenar = document.getElementById("botaoOrdenar");
+        botaoOrdenar.addEventListener("click", ordenarCervejas);
+
+        let botaoCarregar = document.getElementById("botaoCarregar");
+        botaoCarregar.addEventListener("click", carregarDiv);
+
+      let botaoEmbaralhar = document.getElementById("botaoEmbaralhar");
+        botaoEmbaralhar.addEventListener("click", embaralharCervejas);
+    </script>
+</body>
+
+</html>
