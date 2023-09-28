@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <style>
+          table, th, td {
+          border: 1px solid;
+          }
+      </style>
+   </head>
+   <body>
+      <button id="botaoCarregar">Carregando cervejas...</button>
+      <div id="cervejasDiv"></div>
+      <script>
+         // Função para criar e carregar a tabela em um elemento com o ID especificado
+         const carregarTabelaEmElemento = (cs, id = "cervejasDiv", headers = ["Nome", "Álcool", "Estilo", "Amargor"]) => {
+   const div = document.getElementById(id);
+   if (!div) {
+      console.error(`Elemento com ID "${id}" não encontrado.`);
+      return;
+   }
+
+   const tabela = document.createElement("table");
+   tabela.innerHTML = `
+      <thead>
+         <tr>
+            ${headers.map(header => `<th>${header}</th>`).join('')}
+         </tr>
+      </thead>
+      <tbody>
+         ${cs.map(item => `
+            <tr>
+               <td>${item.name || 'N/A'}</td>
+               <td>${item.alcohol || 'N/A'}</td>
+               <td>${item.style || 'N/A'}</td>
+               <td>${item.ibu || 'N/A'}</td>
+            </tr>
+         `).join('')}
+      </tbody>
+   `;
+   div.innerHTML = ''; // Limpa o conteúdo anterior
+   div.appendChild(tabela);
+}
+
+         // Evento DOMContentLoaded para garantir que o código JavaScript seja executado após o carregamento da página
+         document.addEventListener("DOMContentLoaded", () => {
+            let cervejas = [
+               {
+                  name: "Guiness",
+                  alcohol: "10%",
+                  style: "Imperial Stout",
+                  ibu: "50"
+               },
+               {
+                  name: "Desperados",
+                  alcohol: "6%",
+                  style: "Lager",
+                  ibu: "30"
+               },
+               {
+                  name: "Becks",
+                  alcohol: "5%",
+                  style: "Pilsen",
+                  ibu: "25"
+               }
+            ];
+
+            let botao = document.getElementById("botaoCarregar");
+            botao.addEventListener("click", () => {
+               // Exemplo de uso com nomes de cabeçalhos personalizados
+               const headers = ["Nome", "Teor Alcoólico", "Estilo", "Amargor"];
+               carregarTabelaEmElemento(cervejas, "cervejasDiv", headers);
+            });
+         });
+      </script>
+   </body>
+</html>
