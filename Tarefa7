@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+
+      <meta charset="UTF-8">
+        <style>
+          table, th, td {
+          border: 1px solid;
+          }
+          .table-container {
+         margin-bottom: 30px; /* Ajusta a distância entre as tabelas */
+      }
+
+        </style>
+
+   </head>
+
+
+
+   <body>
+
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+   <div class="table-container">
+      <div id="cervejasDiv"></div>
+   </div>
+   <div><button id="botaoCarregar2">Carregando bancos...</button></div>
+   <div class="table-container">
+      <div id="bancosDiv"></div>
+   </div> 
+
+   </body>   
+
+   
+
+   <script>
+
+
+
+      let cervejas = []
+      let bancos = []
+      
+
+      
+
+      //cs é um array de cervejas
+
+      const carregarDiv = cs => {
+
+         const div = document.getElementById("cervejasDiv")
+
+         const itensHtml = cs.map( ({name,alcohol,ibu}) => 
+           `<tr><td>${name}</td><td>${alcohol}</td><td>${ibu}</td></tr>`);
+         const tabelaHtml = `
+            <table>
+               <tr>
+                  <th>Name</th>
+                  <th>alcohol</th>
+                  <th>ibu</th>
+               </tr>
+               ${itensHtml.join("\n")}
+            </table>
+         `;
+         div.innerHTML = tabelaHtml;
+      };
+
+     const carregarDiv2 = cs => {
+
+         const div = document.getElementById("bancosDiv")
+
+         const itensHtml = cs.map( ({bank_name,account_number,routing_number}) => 
+           `<tr><td>${bank_name}</td><td>${account_number}</td><td>${routing_number}</td></tr>`);
+         const tabelaHtml = `
+            <table>
+               <tr>
+                  <th>Nome do banco</th>
+                  <th>Número da conta</th>
+                  <th>Número de roteamento</th>
+               </tr>
+               ${itensHtml.join("\n")}
+            </table>
+         `;
+         div.innerHTML = tabelaHtml;
+      };
+
+     function carregarbancos(){
+
+         fetch("https://random-data-api.com/api/v2/banks?size=3").then(
+
+            res => res.json()
+
+         ).then( 
+
+            json => carregarDiv2(json) 
+
+         ).catch(
+
+            err => document.getElementById("bancosDiv").innerHTML = `Fudeu... ${err}`
+
+         )
+
+         document.getElementById("bancosDiv").innerHTML = `Fazendo requisição`          
+
+      }
+
+
+
+            
+
+      function carregarCervejas2(){
+
+         fetch("https://random-data-api.com/api/v2/beers?size=3").then(
+
+            res => res.json()
+
+         ).then( 
+
+            json => carregarDiv(json) 
+
+         ).catch(
+
+            err => document.getElementById("cervejasDiv").innerHTML = `Fudeu... ${err}`
+
+         )
+
+         document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`          
+
+      }
+
+      
+
+
+
+      let botao = document.getElementById("botaoCarregar")
+      let botao2 = document.getElementById("botaoCarregar2")
+
+      botao.addEventListener("click", () => carregarCervejas2() )
+      botao2.addEventListener("click", () => carregarbancos() )
+
+      
+
+   </script>
+
+</html>
