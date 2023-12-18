@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>ReceitaReact - 2</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+
+
+    </div>
+
+
+
+    <script src="libs/react.js"></script>
+
+    <script src="libs/react-dom.js"></script>
+
+    <script src="libs/babel.js"></script>
+
+
+
+    <script type="text/babel">
+
+
+
+class TabelaBebidas extends React.Component {
+            render() {
+                const { titulo } = this.props;
+                return (
+                    <div>
+                        <h1>{titulo}</h1>
+                        <table id="tabela" border="1">
+                            <thead>
+                                <tr><th>Nome</th><th>Marca</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                );
+            }
+        }
+
+        class Cabecalho extends React.Component {
+            render() {
+                return (
+                    <header>
+                        <h1>ReceitaReact - 2</h1>
+                        <p>Uma aplicação React simples</p>
+                    </header>
+                );
+            }
+        }
+
+        class Rodape extends React.Component {
+            render() {
+                return (
+                    <footer>
+                        <p>&copy; 2023 ReceitaReact - 2. Todos os direitos reservados.</p>
+                    </footer>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <div>
+                <Cabecalho />
+                <TabelaBebidas titulo="Tabela de Cana" />
+                <Rodape />
+            </div>,
+            document.getElementById("app")
+        );
+
+
+
+    </script>
+
+</body>
+
+</html>
