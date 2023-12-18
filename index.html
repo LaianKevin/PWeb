@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReactZero</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <script type="text/babel">
+        function Cabecalho() {
+            return (
+                <h1>Minha tabela de bebidas</h1>
+            );
+        }
+
+        function TabelaBebidas({ dados }) {
+            return (
+                <div>
+                    {Cabecalho()}
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Bebida</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dados.map((bebida, index) => (
+                                <tr key={index}>
+                                    <td>{bebida.nome}</td>
+                                    <td>{bebida.quantidade}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        function App() {
+            const [mostrarTabela, setMostrarTabela] = React.useState(false);
+
+            const dadosBebidas = [
+                { nome: 'Cachaça 51', quantidade: '700ml' },
+                { nome: 'Caipirinha', quantidade: '1 unidade' },
+                { nome: 'Bebida X', quantidade: '500ml' },
+            ];
+
+            return (
+                <div>
+                    <button onClick={() => setMostrarTabela(!mostrarTabela)}>
+                        Mostrar Tabela
+                    </button>
+
+                    {mostrarTabela && <TabelaBebidas dados={dadosBebidas} />}
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById("app")
+        );
+    </script>
+
+</body>
+
+</html>
